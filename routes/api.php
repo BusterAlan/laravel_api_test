@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\Qvsapireq;
+use App\Http\Controllers\Qvshealthstate;
+use App\Http\Controllers\Qvsimccontroll;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -13,7 +17,13 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('/hello', function(){ return response()->json(["message" => "Hello world!"], 200); });
+    Route::post('/userdata', [CorreoController::class, 'login']);
+
+    Route::post('/results', [Qvsapireq::class, 'store']);
+
+    Route::post('/imcval', [Qvsimccontroll::class, 'other']);
+
+    Route::post('/healthstateval', [Qvshealthstate::class, 'mine']);
 
 });
 

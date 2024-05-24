@@ -20,7 +20,9 @@ class AuthController extends Controller {
 
             "name" => 'required',
             "email" => 'required|email|unique:users',
-            "password" => 'required|confirmed'
+            "password" => 'required|confirmed',
+            "photo" => 'nullable',
+            "gender" => 'nullable'
 
         ]);
 
@@ -30,6 +32,8 @@ class AuthController extends Controller {
         $user -> name = $request -> name;
         $user -> email = $request -> email;
         $user -> password = Hash::make($request -> password);
+        $user -> photo = $request -> photo;
+        $user -> gender = $request -> gender;
         $user -> save();
 
         // Respuesta de la API
