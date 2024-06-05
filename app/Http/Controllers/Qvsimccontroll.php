@@ -18,7 +18,7 @@ class Qvsimccontroll extends Controller {
 
         DB::insert('insert into bmi_calc_info (id_userdata, weight, height, waist) values (?, ?, ?, ?)', [$id_userdata, $weight, $height, $waist]);
 
-        return response()->json(
+        return response() -> json(
 
             [
                 'message' => 'Data stored successfully',
