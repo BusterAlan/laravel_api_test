@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\HabitHandler;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Qvsapireq;
 use App\Http\Controllers\Qvshealthstate;
 use App\Http\Controllers\Qvsimccontroll;
@@ -28,4 +30,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 });
 
 Route::get('/users', [AuthController::class, 'allUsers']);
+
+Route::get('/news', [NewsController::class, 'getNews']);
+
+Route::get('/habitProgress/{id_user}', [HabitHandler::class, 'evalProgress']);
+
+Route::post('/insertHabitDay', [HabitHandler::class, 'insertDayChecked']);
+
+Route::patch('/updateProgress', [HabitHandler::class, 'updateFinished']);
 

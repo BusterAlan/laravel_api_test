@@ -105,7 +105,7 @@ class AuthController extends Controller {
     public function allUsers() {
 
         $users = User::all();
-        return response()->json(
+        return response() -> json(
 
             ["users" => $users],
             Response::HTTP_OK
